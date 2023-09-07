@@ -7,7 +7,7 @@
 
 It is a collaborative project involving a team of two and I am so fortunate to have been a partner of this project with:
 - [Gideon Edoghotu](https://github.com/giddy11)
-This project is an educational project of course as it challenges us about everything you have learn so far at ALX SE:
+This project is an educational project of course as it challenges us about everything we have learn so far at ALX SE:
 - Basics of programming
 - Basics of C
 - Basics of thinking like an engineer
