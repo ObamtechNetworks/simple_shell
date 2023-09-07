@@ -16,22 +16,16 @@
  */
 int _putchar(int c)
 {
-	static int i;
-	static char buf[BUF_CAPACITY];
+	int i = 0;
+	char buf[BUF_CAPACITY];
 
-	if (c == BUF_CLEARING || i >= BUF_CAPACITY)
+	while (i < BUF_CAPACITY && c != '\0')
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, c);
+		i++
 	}
-
-	if (c != BUF_CLEARING)
-		buf[i++] = c;
 
 	if (c != '\0')
-	{
 		write(1, &c, 1);
-	}
-
 	return (1);
 }

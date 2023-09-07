@@ -2,7 +2,6 @@
 #define MAIN_H
 
 /* C standard library header files */
-#include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -12,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <errno.h>
 #include <stdarg.h>
 
 #define BUF_CAPACITY 1024
@@ -29,7 +29,6 @@ int print_percent(va_list arg);
 /* Helper functions 1*/
 char *convert_to(long int num, int base);
 int print_number(unsigned int digit, unsigned int base, char *hex_base);
-
 
 int _printf(const char *format, ...);
 
