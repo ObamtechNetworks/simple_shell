@@ -6,7 +6,7 @@
 > Project is a 10 weight point as provided and mandated for all ALX Software Engineering Student.
 
 It is a collaborative project involving a team of two and I am so fortunate to have been a partner of this project with:
-- [Gideon Edoghotu Gideon Azibaobuom](https://github.com/giddy11)
+- [Gideon Edoghotu](https://github.com/giddy11)
 This project is an educational project of course as it challenges us about everything you have learn so far at ALX SE:
 - Basics of programming
 - Basics of C
@@ -75,7 +75,7 @@ This project is an educational project of course as it challenges us about every
 
 # AUTHORS FOR THIS REPO/PROJECT
 - [Ipadeola Bamidele Michael](https://github.com/ObamtechNetworks)
-- [Gideon Edoghotu Gideon Azibaobuom](https://github.com/giddy11)
+- [Gideon Edoghotu](https://github.com/giddy11)
 
 # ALX PROJECT REQUIREMENTS
 # General
