@@ -26,6 +26,21 @@ int print_spec_d_match(va_list arg);
 int print_spec_s_match(va_list arg);
 int print_percent(va_list arg);
 
+/*string family*/
+char *_strcat(char *dest, char *src);
+char *_strchr(char *s, char c);
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
+char *_strncpy(char *dest, char *src, int n);
+char *_strncat(char *dest, char *src, int n);
+void _puts(char *str);
+char *_strdup(char *str);
+
+/*memory copy and management*/
+char *_memset(char *s, char b, unsigned int n);
+char *_memcpy(char *dest, char *src, unsigned int n);
+
 /* Helper functions 1*/
 char *convert_to(long int num, int base);
 int print_number(unsigned int digit, unsigned int base, char *hex_base);
