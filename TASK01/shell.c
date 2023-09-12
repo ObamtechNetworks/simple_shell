@@ -42,6 +42,8 @@ int main(void)
 		tokens = parse_tokens(lines_buffer, &argc);
 
 		/*create a process and call command*/
+		if (argc > 0)
+			exec_tokens(tokens);/*CALL EXEC_TOKEN FUNC*/
 
 		/*FREE ALLOC MEMORY FOR TOKENS AND TOK_ARRAY ITSELF*/
 		for (i = 0; i < argc; i++)

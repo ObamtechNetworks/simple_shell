@@ -19,6 +19,9 @@
 #define BUF_CLEARING -1
 #define EMPTY_STRING "(null)"
 
+/** ENVIRON VARIABLE */
+extern char **environ;
+
 /* function prototypes */
 int _putchar(int c);
 int (*find_format_handlers(const char *format))(va_list arg);
@@ -48,6 +51,7 @@ char *_strstr(char *haystack, char *needle);
 /*======= SIMPLE SHELL FUNCTIONS =========*/
 char **parse_tokens(char *input, int *argc);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int exec_tokens(char **tokens);
 /*==================================================================*/
 
 /* Helper functions 1*/
