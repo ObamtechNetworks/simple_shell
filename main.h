@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdarg.h>
+#include <string.h>/*added this...*/
 
 #define BUF_CAPACITY 1024
 #define BUF_CLEARING -1
@@ -43,6 +44,11 @@ int _strlen(char *s);
 /*string3.c*/
 char *_strncat(char *dest, char *src, int n);
 char *_strstr(char *haystack, char *needle);
+
+/*======= SIMPLE SHELL FUNCTIONS =========*/
+char **parse_tokens(char *input, int *argc);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+/*==================================================================*/
 
 /* Helper functions 1*/
 char *convert_to(long int num, int base);
