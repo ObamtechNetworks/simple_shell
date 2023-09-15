@@ -6,7 +6,7 @@
  * @prompt: prints prompt per executed input
  * Return: void
  */
-void getInput(char **lines_buffer, size_t *line_len, const char *prompt)
+ssize_t getInput(char **lines_buffer, size_t *line_len, const char *prompt)
 {
 	ssize_t line_size;
 
@@ -14,11 +14,21 @@ void getInput(char **lines_buffer, size_t *line_len, const char *prompt)
 	line_size = getline(lines_buffer, line_len, stdin);
 	if (line_size == -1)
 	{
-		perror("\nExit getline...");
-		exit(EXIT_FAILURE);/*NOTES: might need to utilize rtn valu*/
+		printf("encounter\n");
+		return (-1);
+		/*perror("\nExit getline...");*/
+		/*exit(EXIT_SUCCESS);*NOTES: might need to utilize rtn valu*/
 	}/*if user pass new line, just enter key*/
 	else if (line_size == 1 && (*lines_buffer)[0] == '\n')
-		return;
+	{
+		printf("error 2\n");
+		return (0);
+	}
+	else
+	{
+		printf("error 3\n");
+		return (0);
+	}
 }
 /**
  * main - entry point
@@ -31,6 +41,7 @@ int main(void)
 	char **tokens = NULL;
 	int argc = 0;
 	int i = 0;
+	ssize_t rtn_val_input = 0;
 	/*initialize dir list from our struct node*/
 	dir_node *dir_list = build_dir_list();/*call the build dir list fxn*/
 	/*some new variables above*/
@@ -39,7 +50,9 @@ int main(void)
 	while (1)
 	{
 		/*get user input and store inside buffer*/
-		getInput(&lines_buffer, &line_len, prompt);
+		rtn_val_input = getInput(&lines_buffer, &line_len, prompt);
+		if (rtn_val_input == -1)
+			break;
 		/*generate tokens by calling parse_token*/
 		argc = 0;/*starting point of arg.count*/
 		tokens = parse_tokens(lines_buffer, &argc);

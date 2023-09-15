@@ -64,21 +64,31 @@ int exec_tokens(char **tokens, dir_node *dir_list)
 	}
 	if (child == 0)
 	{
-		full_path = find_cmd_in_path(tokens[0], dir_list);
-		if (full_path != NULL)
+		if (_strchr(tokens[0], '/') != NULL)
 		{
-			/*call execve command with environ variable &fullpath*/
-			execve(full_path, tokens, environ);
-			/*code below will only run when execve failed*/
+			execve(tokens[0], tokens, environ);
 			perror("execve failed");
-			free(full_path);/*free full path frm find_cmd*/
-			return (-1);/*error code*/
+			exit(EXIT_FAILURE);
 		}
 		else
 		{
-			free(full_path);
-			/*(_printf("command not found: %s\n", tokens[0]);*/
-			exit(EXIT_FAILURE);
+			full_path = find_cmd_in_path(tokens[0], dir_list);
+			if (full_path != NULL)
+			{
+				/*call execve command with environ variable &fullpath*/
+				execve(full_path, tokens, environ);
+				/*code below will only run when execve failed*/
+				perror("execve failed");
+				free(full_path);/*free full path frm find_cmd*/
+				return (-1);/*error code*/
+			}
+			else
+			{
+				free(full_path);
+				printf("path not found\n");
+				/*(_printf("command not found: %s\n", tokens[0]);*/
+				/*exit(EXIT_FAILURE);*/
+			}
 		}
 	}
 	else

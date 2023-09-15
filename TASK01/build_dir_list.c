@@ -8,6 +8,7 @@ dir_node *create_dir_node(char *dir)
 {
 	/*create a new node and allocate space*/
 	dir_node *new_node = NULL;
+
 	new_node = malloc(sizeof(dir_node));
 	if (new_node == NULL)
 	{
