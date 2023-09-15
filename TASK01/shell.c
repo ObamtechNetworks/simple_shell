@@ -14,19 +14,19 @@ ssize_t getInput(char **lines_buffer, size_t *line_len, const char *prompt)
 	line_size = getline(lines_buffer, line_len, stdin);
 	if (line_size == -1)
 	{
-		printf("encounter\n");
+		/*printf("encounter\n");*/
 		return (-1);
 		/*perror("\nExit getline...");*/
 		/*exit(EXIT_SUCCESS);*NOTES: might need to utilize rtn valu*/
 	}/*if user pass new line, just enter key*/
 	else if (line_size == 1 && (*lines_buffer)[0] == '\n')
 	{
-		printf("error 2\n");
+		/*printf("error 2\n");*/
 		return (0);
 	}
 	else
 	{
-		printf("error 3\n");
+		/*printf("error 3\n");*/
 		return (0);
 	}
 }
