@@ -19,8 +19,29 @@
 #define BUF_CLEARING -1
 #define EMPTY_STRING "(null)"
 
+/** STRUCTURE FOR LINKED LIST OF DIRECTORIES*/
+/**
+ * struct dir_node - structure for directory of linked lists
+ * @dir: the directory string
+ * @next: the pointer to the next node in the list
+ */
+typedef struct dir_node
+{
+	char *dir;
+	struct dir_node *next;
+} dir_node;
+
+/** LINKED LIST FUNCTIONS PROTOYPES */
+dir_node *create_dir_node(char *dir);/*creates a new dir node*/
+void add_directory(dir_node **head, char *dir);
+dir_node *build_dir_list(void);
+void free_dir_list(dir_node *head);
+char *find_cmd_in_path(char *cmd, dir_node *dir_list);
+
 /** ENVIRON VARIABLE */
 extern char **environ;
+/** GET ENV FUNCTION */
+char *_getenv(const char *name);
 
 /* function prototypes */
 int _putchar(int c);
@@ -51,7 +72,7 @@ char *_strstr(char *haystack, char *needle);
 /*======= SIMPLE SHELL FUNCTIONS =========*/
 char **parse_tokens(char *input, int *argc);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-int exec_tokens(char **tokens);
+int exec_tokens(char **tokens, dir_node *dir_list);
 /*==================================================================*/
 
 /* Helper functions 1*/

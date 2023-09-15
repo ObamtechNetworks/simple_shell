@@ -16,7 +16,9 @@ void getInput(char **lines_buffer, size_t *line_len, const char *prompt)
 	{
 		perror("\nExit getline...");
 		exit(EXIT_FAILURE);/*NOTES: might need to utilize rtn valu*/
-	}
+	}/*if user pass new line, just enter key*/
+	else if (line_size == 1 && (*lines_buffer)[0] == '\n')
+		return;
 }
 /**
  * main - entry point
@@ -24,13 +26,14 @@ void getInput(char **lines_buffer, size_t *line_len, const char *prompt)
  */
 int main(void)
 {
-	char *prompt, *lines_buffer;
+	char *prompt = NULL, *lines_buffer = NULL;
 	size_t line_len = 0;
-	char **tokens;
-	int argc;
-	int i;
+	char **tokens = NULL;
+	int argc = 0;
+	int i = 0;
+	/*initialize dir list from our struct node*/
+	dir_node *dir_list = build_dir_list();/*call the build dir list fxn*/
 	/*some new variables above*/
-	lines_buffer = NULL;
 	prompt = "Prompt$ ";
 
 	while (1)
@@ -40,17 +43,16 @@ int main(void)
 		/*generate tokens by calling parse_token*/
 		argc = 0;/*starting point of arg.count*/
 		tokens = parse_tokens(lines_buffer, &argc);
-
 		/*create a process and call command*/
 		if (argc > 0)
-			exec_tokens(tokens);/*CALL EXEC_TOKEN FUNC*/
-
+			exec_tokens(tokens, dir_list);/*CALL EXEC_TOKEN FUNC*/
 		/*FREE ALLOC MEMORY FOR TOKENS AND TOK_ARRAY ITSELF*/
 		for (i = 0; i < argc; i++)
 			free(tokens[i]);
 		free(tokens);
 	}
 	free(lines_buffer);
-
+	/*FREE DIRECTORY LIST*/
+	free_dir_list(dir_list);
 	return (0);
 }
