@@ -39,6 +39,7 @@ int main(void)
 	size_t line_len = 0;
 	char **tokens = NULL;
 	int argc = 0;
+	int rtn;
 	int i = 0;
 	ssize_t rtn_val_input = 0;
 	/*initialize dir list from our struct node*/
@@ -65,7 +66,11 @@ int main(void)
 		tokens = parse_tokens(lines_buffer, &argc);
 		/*create a process and call command*/
 		if (argc > 0)
-			exec_tokens(tokens, dir_list);/*CALL EXEC_TOKEN FUNC*/
+		{
+			rtn = exec_tokens(tokens, dir_list);/*CALL EXEC_TOKEN FUNC*/
+			if (rtn == -1)
+				exit(127);
+		}
 		/*FREE ALLOC MEMORY FOR TOKENS AND TOK_ARRAY ITSELF*/
 		for (i = 0; i < argc; i++)
 			free(tokens[i]);

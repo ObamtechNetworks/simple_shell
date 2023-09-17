@@ -73,6 +73,7 @@ char *_strstr(char *haystack, char *needle);
 char **parse_tokens(char *input, int *argc);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int exec_tokens(char **tokens, dir_node *dir_list);
+char *_strtok(char *str, const char *delim);
 /*==================================================================*/
 
 /* Helper functions 1*/

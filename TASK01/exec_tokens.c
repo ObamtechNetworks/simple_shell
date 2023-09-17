@@ -14,7 +14,6 @@ char *find_cmd_in_path(char *cmd, dir_node *dir_list)
 	char *full_path = NULL;
 	if (cmd == NULL || dir_list == NULL)
 	{
-		perror("Invalid input, cmd or dir_List is NULL");
 		return (NULL);
 	}
 	/*LOOP THROUGH THE dir_list via current_dir*/
@@ -85,21 +84,21 @@ int exec_tokens(char **tokens, dir_node *dir_list)
 			else
 			{
 				free(full_path);
-				printf("path not found\n");
-				/*(_printf("command not found: %s\n", tokens[0]);*/
-				/*exit(EXIT_FAILURE);*/
+				fprintf(stderr, "./hsh: 1: %s: not found\n", tokens[0]);
+				return (-1);
 			}
 		}
 	}
 	else
 	{
 		wait(&status);/*back to parent process*/
-		/*if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
+		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 		{
-			_printf("Child process exited with error: %d\n",
-					WEXITSTATUS(status));
+			/*_printf("Child process exited with error: %d\n",
+					WEXITSTATUS(status));*/
 			return (-1);
-		}*/
+		}
 	}
+	/*fprintf(stderr, "hit return 0");*/
 	return (0);/*success*/
 }
