@@ -6,11 +6,10 @@
  * @prompt: prints prompt per executed input
  * Return: void
  */
-ssize_t getInput(char **lines_buffer, size_t *line_len, const char *prompt)
+ssize_t getInput(char **lines_buffer, size_t *line_len)
 {
 	ssize_t line_size;
 
-	printf("%s", prompt);
 	line_size = getline(lines_buffer, line_len, stdin);
 	if (line_size == -1)
 	{
@@ -36,7 +35,7 @@ ssize_t getInput(char **lines_buffer, size_t *line_len, const char *prompt)
  */
 int main(void)
 {
-	char *prompt = NULL, *lines_buffer = NULL;
+	char *lines_buffer = NULL;
 	size_t line_len = 0;
 	char **tokens = NULL;
 	int argc = 0;
@@ -44,15 +43,23 @@ int main(void)
 	ssize_t rtn_val_input = 0;
 	/*initialize dir list from our struct node*/
 	dir_node *dir_list = build_dir_list();/*call the build dir list fxn*/
-	/*some new variables above*/
-	prompt = "Prompt$ ";
+	int run = 1;
+	int interactive_mode = isatty(STDIN_FILENO);
 
-	while (1)
+	while (run)
 	{
+		if (interactive_mode)
+		{
+			printf("$ ");
+			fflush(stdout);
+		}
 		/*get user input and store inside buffer*/
-		rtn_val_input = getInput(&lines_buffer, &line_len, prompt);
+		rtn_val_input = getInput(&lines_buffer, &line_len);
 		if (rtn_val_input == -1)
+		{
+			run = 0;
 			break;
+		}
 		/*generate tokens by calling parse_token*/
 		argc = 0;/*starting point of arg.count*/
 		tokens = parse_tokens(lines_buffer, &argc);
