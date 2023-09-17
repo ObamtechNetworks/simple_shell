@@ -13,7 +13,7 @@ char **parse_tokens(char *input, int *argc)
 	char *split = NULL;/*keep track of each pieces*/
 	int i = 0;
 	/*handle empty input */
-	if (input == NULL || input[0] == '\0' || input[0] == '\n')
+	if (input == NULL || input[0] == '\0' || input[0] == '\n'|| input[0] == '     ')
 	{
 		/*handle empty input*/
 		tokens = (char **)malloc(sizeof(char *) * 2);
