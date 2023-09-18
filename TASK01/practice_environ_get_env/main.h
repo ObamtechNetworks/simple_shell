@@ -19,24 +19,6 @@
 #define BUF_CLEARING -1
 #define EMPTY_STRING "(null)"
 
-/** STRUCTURE FOR BUILT IN COMMANDS */
-/**
- * struct built_in - structure for builtin cmds
- * @cmd_name: the name of the built in command
- * @handler: the function that handles the command
- */
-typedef struct built_in
-{
-	char *cmd_name;
-	int (*handler)(char **args);
-} built_in;
-/** ==== HANDLER FUNCTIONS FOR BUILT IN CMDS **/
-int get_built_cmd_func(char **args);
-int handle_cd(char **args);
-int handle_exit(char **args);
-
-/*SUPPLEMENT FUNCTIONS */
-long int _strtol(const char *nptr, char **endptr);
 /** STRUCTURE FOR LINKED LIST OF DIRECTORIES*/
 /**
  * struct dir_node - structure for directory of linked lists
@@ -91,7 +73,6 @@ char *_strstr(char *haystack, char *needle);
 char **parse_tokens(char *input, int *argc);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int exec_tokens(char **tokens, dir_node *dir_list);
-char *_strtok(char *str, const char *delim);
 /*==================================================================*/
 
 /* Helper functions 1*/

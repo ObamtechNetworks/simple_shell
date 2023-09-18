@@ -40,16 +40,16 @@ int main(void)
 	char **tokens = NULL;
 	int argc = 0;
 	int rtn;
-	int i = 0;
+	int i = 0, built_in = 0;/*for executing built in cmd*/
 	ssize_t rtn_val_input = 0;
 	/*initialize dir list from our struct node*/
 	dir_node *dir_list = build_dir_list();/*call the build dir list fxn*/
 	int run = 1;
-	int interactive_mode = isatty(STDIN_FILENO);
+	int i_mode = isatty(STDIN_FILENO);
 
 	while (run)
 	{
-		if (interactive_mode)
+		if (i_mode)
 		{
 			printf("$ ");
 			fflush(stdout);
@@ -67,7 +67,8 @@ int main(void)
 		/*create a process and call command*/
 		if (argc > 0)
 		{
-			rtn = exec_tokens(tokens, dir_list);/*CALL EXEC_TOKEN FUNC*/
+			if ((built_in = get_built_cmd_func(tokens)) == -1)
+				rtn = exec_tokens(tokens, dir_list);/*CALL EXEC_TOKEN FUNC*/
 			if (rtn == -1)
 				exit(127);
 		}
