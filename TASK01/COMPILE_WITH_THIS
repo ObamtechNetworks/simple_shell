@@ -1,1 +1,4 @@
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+
+./checker.bash ./hsh ./TEST_SUITE/1.SImple_shell_01/ls.bash
