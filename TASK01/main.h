@@ -34,8 +34,9 @@ typedef struct built_in
 int get_built_cmd_func(char **args);
 int handle_cd(char **args);
 int handle_exit(char **args);
+int handle_env(char **args);
 
-/*SUPPLEMENT FUNCTIONS */
+/*SUPPLEMENTARY FUNCTIONS */
 long int _strtol(const char *nptr, char **endptr);
 /** STRUCTURE FOR LINKED LIST OF DIRECTORIES*/
 /**
