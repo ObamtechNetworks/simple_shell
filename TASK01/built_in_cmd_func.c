@@ -50,6 +50,7 @@ int handle_exit(char **args)
  */
 int handle_env(char **args)
 {
+	(void)args;
 	/*set the */
 	return (0);
 }
