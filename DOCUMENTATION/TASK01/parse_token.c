@@ -1,28 +1,6 @@
 #include "main.h"
 
 /**
- * handle_memory_allocation_failure - frees the emory
- * @tokens: A pointer to an array of character pointers
- * @argc: keeps track of the number of arguments
- */
-void handle_memory_allocation_failure(char **tokens, int argc)
-{
-	int i = 0;
-
-	perror("Token allocation failed");
-
-	for (; i < argc; i++)
-	{
-		if (tokens[i] != NULL)
-			free(tokens[i]);
-	}
-
-	free(tokens);
-	exit(EXIT_FAILURE);
-}
-
-
-/**
  * parse_tokens - breaks inputs into array of tokens/words
  * @input: arguments from user
  * @argc: keeps track of number of arguments
@@ -30,18 +8,25 @@ void handle_memory_allocation_failure(char **tokens, int argc)
  */
 char **parse_tokens(char *input, int *argc)
 {
+	/*Parse the inputs into tokens and store in an array*/
 	char **tokens = NULL;/*the eventual array to return*/
 	char *split = NULL;/*keep track of each pieces*/
-
-	if (input == NULL || input[0] == '\0' || input[0] == '\n' || input[0] == ' ')
+	int i = 0;
+	/*handle empty input */
+	if (input == NULL || input[0] == '\0' || input[0] == '\n'|| input[0] == ' ')
 	{
+		/*handle empty input*/
 		tokens = (char **)malloc(sizeof(char *) * 2);
 		if (tokens == NULL)
-			handle_memory_allocation_failure(tokens, *argc);
+		{
+			perror("Token alloc failed");
+			exit(EXIT_FAILURE);
+		}
 		tokens[0] = NULL;
 		*argc = 0;
 		return (tokens);
 	}
+	/*call strtok to split input based on delimiters*/
 	split = strtok(input, " \t\n");
 	*argc = 0;/*keep track of number of token 4 space alloc*/
 	/*get other fragments and store inside the tokens array*/
@@ -52,17 +37,33 @@ char **parse_tokens(char *input, int *argc)
 				((*argc) + 2) * sizeof(char *));
 		/*HANDLE REALLOC RETURN*/
 		if (tokens == NULL)
-			handle_memory_allocation_failure(tokens, *argc);
+		{
+			perror("Token allocation failed");
+			/*free allocs*/
+			for (i = 0; i < *argc; i++)
+			{
+				if(tokens[i] != NULL)/*updated*/
+					free(tokens[i]);
+			}
+			free(tokens);
+			exit(EXIT_FAILURE);/** NOTES we may need return values*/
+		}
 		/*STORE TOKENS INTO ARRAY BASED ON ARGC*/
 		tokens[*argc] = _strdup(split);
 		if (tokens[*argc] == NULL)
 		{
 			perror("alloc failed: tokens[*argc]");
-			handle_memory_allocation_failure(tokens, *argc);
+			for (i = 0; i < *argc; i++)
+			{
+				if(tokens[i] != NULL)
+					free(tokens[i]);
+			}
+			free(tokens);
+			exit(EXIT_FAILURE);
 		}
 		(*argc)++;
 		/*get other fragments*/
-		split = _strtok(NULL, " \t\n");
+		split = strtok(NULL, " \t\n");
 	}
 	/*set last value to NULL*/
 	tokens[*argc] = NULL;
