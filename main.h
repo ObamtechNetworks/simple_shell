@@ -67,10 +67,15 @@ char *_getenv(const char *name);
 int _putchar(int c);
 int _echar(int c);
 int (*find_format_handlers(const char *format))(va_list arg);
+int (*find_format_handlers2(const char *format))(va_list arg);
 int print_spec_c_match(va_list arg);
+int print_spec_c_match2(va_list arg);
 int print_spec_d_match(va_list arg);
+int print_spec_d_match2(va_list arg);
 int print_spec_s_match(va_list arg);
+int print_spec_s_match2(va_list arg);
 int print_percent(va_list arg);
+int print_percent2(va_list arg);
 
 /*string1.c*/
 char *_memcpy(char *dest, char *src, unsigned int n);
@@ -101,7 +106,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 /* Helper functions 1*/
 char *convert_to(long int num, int base);
 int print_number(unsigned int digit, unsigned int base, char *hex_base);
-
+int print_number2(unsigned int digit, unsigned int base, char *hex_base);
 int _printf(const char *format, ...);
 int _fprintf(const char *format, ...);
 /**
