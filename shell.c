@@ -12,7 +12,7 @@ ssize_t getInput(char **lines_buffer, size_t *line_len)
 {
 	ssize_t line_size;
 
-	line_size = getline(lines_buffer, line_len, stdin);
+	line_size = _getline(lines_buffer, line_len, stdin);
 	if (line_size == -1)
 	{
 		return (-1);
@@ -46,7 +46,7 @@ int main(void)
 	{
 		if (interactive_mode)
 		{
-			printf("$ ");
+			_printf("$ ");
 			fflush(stdout);
 		}
 		rtn_val_input = getInput(&lines_buffer, &line_len);

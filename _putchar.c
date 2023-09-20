@@ -21,7 +21,7 @@ int _putchar(int c)
 
 	if (c == BUF_CLEARING || i >= BUF_CAPACITY)
 	{
-		write(2, buf, i);
+		write(1, buf, i);
 		i = 0;
 	}
 

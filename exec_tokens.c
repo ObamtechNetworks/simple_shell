@@ -85,7 +85,7 @@ int exec_tokens(char **tokens, dir_node *dir_list)
 			else
 			{
 				free(full_path);
-				_printf("./hsh: 1: %s: not found\n", tokens[0]);
+				fprintf(stderr, "./hsh: 1: %s: not found\n", tokens[0]);
 				/*return (-10);*/
 				exit(127);
 			}

@@ -42,7 +42,7 @@ int handle_cd(char **args)
 	{
 		if (prev_dir == NULL)
 		{
-			_printf("%s: 1: cd: can't cd to ", args[0]);
+			fprintf(stderr, "%s: 1: cd: can't cd to ", args[0]);
 			return (-1);
 		}
 		if (chdir(prev_dir) != 0)
@@ -55,7 +55,7 @@ int handle_cd(char **args)
 	{/*change to user's direct with space for err check*/
 		if (chdir(args[1]) != 0)
 		{
-			_printf("./hsh: 1: cd: can't cd to %s\n", args[1]);
+			fprintf(stderr, "./hsh: 1: cd: can't cd to %s\n", args[1]);
 			errno = EACCES;
 			return (0);
 		}
@@ -112,7 +112,7 @@ int handle_env(char **args)
 	if (args != NULL)
 	{
 		for (; *env != NULL; env++)
-			printf("%s\n", *env);
+			_printf("%s\n", *env);
 	}
 	/*else, loop through variable environ to print each value out*/
 	return (0);
