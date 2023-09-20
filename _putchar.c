@@ -14,14 +14,14 @@
  *
  * Return: Always returns 1, indicating a single character was processed.
  */
-int _putchar(int c)
+int _putchar(int c, int fd)
 {
 	static int i;
 	static char buf[BUF_CAPACITY];
 
 	if (c == BUF_CLEARING || i >= BUF_CAPACITY)
 	{
-		write(1, buf, i);
+		write(fd, buf, i);
 		i = 0;
 	}
 

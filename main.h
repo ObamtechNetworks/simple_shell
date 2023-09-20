@@ -64,7 +64,7 @@ int exit_status;
 char *_getenv(const char *name);
 
 /* function prototypes */
-int _putchar(int c);
+int _putchar(int c, int fd);
 int _echar(int c);
 int (*find_format_handlers(const char *format))(va_list arg);
 int (*find_format_handlers2(const char *format))(va_list arg);
@@ -132,4 +132,15 @@ typedef struct format_handler
 
 } format_handler;
 
+/**
+ * struct format_handler2 - Struct token
+ * @format_char: the format token
+ * @handler_func: The function associated
+ */
+typedef struct format_handler2
+{
+	char *format_char;
+	int (*handler_func2)(va_list);
+
+} format_handler2;
 #endif /* MAIN_H */

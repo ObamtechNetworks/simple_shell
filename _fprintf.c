@@ -29,7 +29,7 @@ int produce_range2(char *start, char *stop)
 	int r_value = 0;
 
 	for (; start <= stop; start++)
-		r_value += _echar(*start);
+		r_value += _putchar(*start, 2);
 
 	return (r_value);
 }
@@ -54,17 +54,17 @@ int _fprintf(const char *format, ...)
 	{
 		if (*ptr != '%')
 		{
-			r_value += _echar(*ptr);
+			r_value += _putchar(*ptr, 2);
 			continue;
 		}
 		specifier_start = ptr;
 		ptr++;
-		if (find_format_handlers(ptr))
+		if (find_format_handlers2(ptr))
 			r_value += execute_func2(ptr, args);
 		else
 			r_value += produce_range2(specifier_start, ptr);
 	}
-	_echar(BUF_CLEARING);
+	_putchar(BUF_CLEARING, 2);
 	va_end(args);
 
 	return (r_value);

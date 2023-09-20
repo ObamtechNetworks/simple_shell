@@ -10,7 +10,7 @@
  */
 int (*find_format_handlers2(const char *format))(va_list arg)
 {
-	format_handler find_func[] = {
+	format_handler2 find_func[] = {
 		{"c", print_spec_c_match2},
 		{"s", print_spec_s_match2},
 		{"%", print_percent2},
@@ -24,7 +24,7 @@ int (*find_format_handlers2(const char *format))(va_list arg)
 	while (find_func[i].format_char)
 	{
 		if (format[0] == find_func[i].format_char[0])
-		return (find_func[i].handler_func);
+		return (find_func[i].handler_func2);
 		i++;
 	}
 
