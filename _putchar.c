@@ -3,7 +3,7 @@
 /**
  * _putchar - Outputs characters and manages a buffer
  * @c: The character to be output or a control command
- *
+ * @fd: file descriptor to write to
  * This function outputs characters to the standard output and
  * manages a buffer to improve efficiency. The buffer is flushed
  * either when a control command @c equals BUF_CLEARING or when
@@ -27,11 +27,6 @@ int _putchar(int c, int fd)
 
 	if (c != BUF_CLEARING)
 		buf[i++] = c;
-
-	/*if (c != '\0')
-	{
-		write(1, &c, 1);
-	}*/
 
 	return (1);
 }
