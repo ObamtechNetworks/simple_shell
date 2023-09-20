@@ -93,13 +93,13 @@ int print_base_16(unsigned int num, char *hex_case)
 	if (*hex_case == 'X')
 	{
 		uppercaseAscii = convert_to_heX(num);
-		r_value += _putchar(uppercaseAscii, 1);
+		r_value += _putchar(uppercaseAscii);
 	}
 
 	if (*hex_case == 'x')
 	{
 		lowercaseAscii = convert_to_hex(num);
-		r_value += _putchar(lowercaseAscii, 1);
+		r_value += _putchar(lowercaseAscii);
 	}
 
 	return (r_value);
@@ -145,7 +145,7 @@ int print_number(unsigned int digit, unsigned int base, char *hex_case)
 		if ((number >= 10 && number < 16) && base > 10)
 			r_value += print_base_16(number, hex_case);
 		else
-			r_value += _putchar(number + '0', 1);
+			r_value += _putchar(number + '0');
 
 		num = num - (number * exponent);
 		exponent /= base;

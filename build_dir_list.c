@@ -48,7 +48,7 @@ void add_directory(dir_node **head, char *dir)
 	*head = new_dir;
 }
 /**
- * build_dir_list - this function builds a linked list of directories
+ * build_dir_list: this function builds a linked list of directories
  * Description: it parses the PATH variable environment into tokens
  * and then create a new head node
  * it then calls the add_directory() function which receives the head node
@@ -79,7 +79,7 @@ dir_node *build_dir_list(void)
 	return (NULL);
 }
 /**
- * free_dir_list - frees the directory nodes and entire linked list
+ * free_dir_list: frees the directory nodes and entire linked list
  * @head: pointer to the head of the list
  * Return: nothing
  */

@@ -25,7 +25,7 @@ int print_spec_s_match(va_list arg)
 	/* print string */
 	while (strn[idx] != '\0')
 	{
-		r_value += _putchar(strn[idx], 1);
+		r_value += _putchar(strn[idx]);
 		idx++;
 	}
 

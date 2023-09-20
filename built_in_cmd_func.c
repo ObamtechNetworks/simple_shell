@@ -6,65 +6,10 @@
  */
 int handle_cd(char **args)
 {
-	char *prev_dir = NULL;/*address of prev working directory*/
-	char *cur_w_dir = getcwd(NULL, 0);/*gets cur_w dir, alloc mem*/
-	char *home_dir = _getenv("HOME");/*to store user's home dir str*/
-
-	if (home_dir == NULL)
-	{
-		perror("cd");
-		return (-1);
-	}
-	if (cur_w_dir == NULL)
-	{
-		perror("getcwd");
-		return (-1);
-	}
-	if (prev_dir != NULL)
-		free(prev_dir);/*free prev_dir if allocated before*/
-	prev_dir = _strdup(cur_w_dir);
-	if (prev_dir == NULL)
-	{
-		perror("mem alloc prev dir");
-		free(cur_w_dir);
-		return (-1);
-	}
-	free(cur_w_dir);/*now free alloc frm getcwd*/
-	if (args[1] == NULL)/*operate on arguments if exists*/
-	{
-		if (chdir(home_dir) != 0)
-		{
-			perror("cd");
-			return (-1);
-		}
-	}
-	else if (_strcmp(args[1], "-") == 0)
-	{
-		if (prev_dir == NULL)
-		{
-			_fprintf("%s: 1: cd: can't cd to ", args[0]);
-			return (-1);
-		}
-		if (chdir(prev_dir) != 0)
-		{
-			perror("cd");
-			return (-1);
-		}
-	}
-	else
-	{/*change to user's direct with space for err check*/
-		if (chdir(args[1]) != 0)
-		{
-			_fprintf("%s: 1: cd: can't cd to ", args[0]);
-			errno = EACCES;
-			return (0);
-		}
-	}
-	/*at the end free mem alloc for prev_dir*/
-	if (prev_dir != NULL)
-		free(prev_dir);
+	(void)args;
 	return (0);
 }
+
 /**
  * handle_exit - function to handle the exiting of the shell
  * @args: the exit command to execute
@@ -82,7 +27,7 @@ int handle_exit(char **args)
 		if (endptr == NULL || *endptr != '\0')
 		{
 			perror("invalid exit status");
-			exit(1);/*invalid*/
+			exit (1);/*invalid*/
 		}
 		/*return the exit status based on parsed string*/
 		/*exit status must be between the range*/
@@ -105,15 +50,7 @@ int handle_exit(char **args)
  */
 int handle_env(char **args)
 {
-	/*local variable*/
-	char **env = environ;
-
-	/*check if there are no arguments*/
-	if (args != NULL)
-	{
-		for (; *env != NULL; env++)
-			_printf("%s\n", *env);
-	}
-	/*else, loop through variable environ to print each value out*/
+	(void)args;
+	/*set the */
 	return (0);
 }

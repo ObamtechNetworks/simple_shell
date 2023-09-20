@@ -29,7 +29,7 @@ int produce_range(char *start, char *stop)
 	int r_value = 0;
 
 	for (; start <= stop; start++)
-		r_value += _putchar(*start, 1);
+		r_value += _putchar(*start);
 
 	return (r_value);
 }
@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
 	{
 		if (*ptr != '%')
 		{
-			r_value += _putchar(*ptr, 1);
+			r_value += _putchar(*ptr);
 			continue;
 		}
 		specifier_start = ptr;
@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
 		else
 			r_value += produce_range(specifier_start, ptr);
 	}
-	_putchar(BUF_CLEARING, 1);
+	_putchar(BUF_CLEARING);
 	va_end(args);
 
 	return (r_value);

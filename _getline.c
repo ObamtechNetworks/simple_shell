@@ -20,7 +20,7 @@ void exit_free_helper(char **buffer)
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	ssize_t index = 0;
-	static char c;
+	char c;
 	int read_file;
 
 	(void) stream;
