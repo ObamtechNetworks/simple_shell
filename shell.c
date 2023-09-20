@@ -1,7 +1,4 @@
 #include "main.h"
-
-int exit_status = 0;
-
 /**
  * getInput - gets input from user
  * @lines_buffer: temp space to store user input
