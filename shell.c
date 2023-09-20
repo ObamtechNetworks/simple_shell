@@ -61,7 +61,6 @@ int main(void)
 		rtn_val_input = getInput(&lines_buffer, &line_len);
 		if (rtn_val_input == -1)
 		{
-			printf("\n");
 			run = 0;
 			break;
 		}
