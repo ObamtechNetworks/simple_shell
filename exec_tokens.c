@@ -71,7 +71,7 @@ int exec_child_proces(char **tokens, dir_node *dir_list)
 		else
 		{
 			free(full_path);
-			_printf("./hsh: 1: %s: not found\n", tokens[0]);
+			_fprintf("./hsh: 1: %s: not found\n", tokens[0]);
 			exit(127);
 		}
 	}

@@ -17,7 +17,7 @@ int print_spec_c_match(va_list arg)
 	r_value = 0;
 
 	/* print the character specified for the specifier */
-	r_value = _putchar(c);
+	r_value = _putchar(c, 1);
 
 	return (r_value);
 }

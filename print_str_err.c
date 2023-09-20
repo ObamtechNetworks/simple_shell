@@ -1,12 +1,12 @@
 #include "main.h"
 /**
- * print_spec_s_match - function that prints the variadic argument specified
+ * print_spec_s_match2 - function that prints the variadic argument specified
  * for the format specifier s
  * @arg: variadic argument
  *
  * Return: returns the number of characters printed to standard output
  */
-int print_spec_s_match(va_list arg)
+int print_spec_s_match2(va_list arg)
 {
 	/* declare variables */
 	unsigned int idx = 0;
@@ -25,7 +25,7 @@ int print_spec_s_match(va_list arg)
 	/* print string */
 	while (strn[idx] != '\0')
 	{
-		r_value += _putchar(strn[idx], 1);
+		r_value += _putchar(strn[idx], 2);
 		idx++;
 	}
 

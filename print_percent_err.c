@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_percent - Prints a percent symbol
+ * print_percent2 - Prints a percent symbol
  * @arg: A va_list argument (unused)
  *
  * Description - This function prints a single percent symbol ("%") to the
@@ -9,8 +9,8 @@
  *
  * Return: The number of bytes printed (always 1)
  */
-int print_percent(va_list arg)
+int print_percent2(va_list arg)
 {
 	(void)arg;
-	return (_putchar('%', 1));
+	return (_putchar('%', 2));
 }

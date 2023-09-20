@@ -64,12 +64,15 @@ int exit_status;
 char *_getenv(const char *name);
 
 /* function prototypes */
-int _putchar(int c);
+int _putchar(int c, int fd);
 int (*find_format_handlers(const char *format))(va_list arg);
+int (*find_format_handlers2(const char *format))(va_list arg);
 int print_spec_c_match(va_list arg);
 int print_spec_d_match(va_list arg);
 int print_spec_s_match(va_list arg);
+int print_spec_s_match2(va_list arg);
 int print_percent(va_list arg);
+int print_percent2(va_list arg);
 
 /*string1.c*/
 char *_memcpy(char *dest, char *src, unsigned int n);
@@ -102,6 +105,7 @@ char *convert_to(long int num, int base);
 int print_number(unsigned int digit, unsigned int base, char *hex_base);
 
 int _printf(const char *format, ...);
+int _fprintf(const char *format, ...);
 
 /**
  * struct conversion_table - data structure for storing hex conversion notation
@@ -126,4 +130,15 @@ typedef struct format_handler
 
 } format_handler;
 
+/**
+ * struct format_handler2 - Struct token
+ * @format_char: the format token
+ * @handler_func2: The function associated
+ */
+typedef struct format_handler2
+{
+	char *format_char;
+	int (*handler_func2)(va_list);
+
+} format_handler2;
 #endif /* MAIN_H */
