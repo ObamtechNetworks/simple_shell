@@ -71,19 +71,3 @@ char *_strtok(char *str, const char *delim)
 
 	return (store);
 }
-
-int main(void)
-{
-	char str[] = "PLEASE BREAK ME";
-	char *store = NULL;
-
-	store = _strtok(str, " ");
-	while (store != NULL)
-	{
-		printf ("%s\n", store);
-		store = _strtok(NULL, " ");
-	}
-
-	return (0);
-
-}
