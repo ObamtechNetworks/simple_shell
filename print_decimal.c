@@ -21,7 +21,7 @@ int print_spec_d_match(va_list arg)
 	if (n < 0)
 	{
 		num = n * -1;
-		r_value += _putchar('-');
+		r_value += _putchar('-', 1);
 	}
 	else
 		num = n;
