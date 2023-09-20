@@ -65,6 +65,7 @@ char *_getenv(const char *name);
 
 /* function prototypes */
 int _putchar(int c);
+int _echar(int c);
 int (*find_format_handlers(const char *format))(va_list arg);
 int print_spec_c_match(va_list arg);
 int print_spec_d_match(va_list arg);
@@ -102,7 +103,7 @@ char *convert_to(long int num, int base);
 int print_number(unsigned int digit, unsigned int base, char *hex_base);
 
 int _printf(const char *format, ...);
-
+int _fprintf(const char *format, ...);
 /**
  * struct conversion_table - data structure for storing hex conversion notation
  * @numConst: integer

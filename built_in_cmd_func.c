@@ -42,7 +42,7 @@ int handle_cd(char **args)
 	{
 		if (prev_dir == NULL)
 		{
-			fprintf(stderr, "%s: 1: cd: can't cd to ", args[0]);
+			_fprintf("%s: 1: cd: can't cd to ", args[0]);
 			return (-1);
 		}
 		if (chdir(prev_dir) != 0)
@@ -55,7 +55,7 @@ int handle_cd(char **args)
 	{/*change to user's direct with space for err check*/
 		if (chdir(args[1]) != 0)
 		{
-			fprintf(stderr, "./hsh: 1: cd: can't cd to %s\n", args[1]);
+			_fprintf("%s: 1: cd: can't cd to ", args[0]);
 			errno = EACCES;
 			return (0);
 		}
