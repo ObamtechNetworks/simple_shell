@@ -13,6 +13,7 @@ char *find_cmd_in_path(char *cmd, dir_node *dir_list)
 	dir_node *current_dir = dir_list;
 	/*create a string to hold the full path, and alloc memory*/
 	char *full_path = NULL;
+
 	if (cmd == NULL || dir_list == NULL)
 	{
 		return (NULL);
@@ -43,65 +44,72 @@ char *find_cmd_in_path(char *cmd, dir_node *dir_list)
 	}
 	return (NULL);
 }
+
 /**
- * exec_tokens - recieves users' cmd and runs it
+ * execute_child_process - executes the child process
  * @tokens: user arguments/tokens to execute
+ * @dir_list: linked list of directories
+ * Return: execution status: 0 for success, -1 for failure
+ */
+int execute_child_process(char **tokens, dir_node *dir_list)
+{
+	char *full_path = NULL;
+
+	if (_strchr(tokens[0], '/') != NULL)
+	{
+		execve(tokens[0], tokens, environ);
+		perror("execve failed");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		full_path = find_cmd_in_path(tokens[0], dir_list);
+		if (full_path != NULL)
+		{
+			execve(full_path, tokens, environ);
+			perror("execve failed");
+			free(full_path);
+			return (-1);
+		}
+		else
+		{
+			free(full_path);
+			_fprintf("./hsh: 1: %s: not found\n", tokens[0]);
+			exit(127);
+		}
+	}
+}
+
+/**
+ * exec_tokens - receives users' cmd and runs it
+ * @tokens: user arguments/tokens to execute
+ * @dir_list: linked list of directories
  * Return: execution status: 0 for success, -1 for failure
  */
 int exec_tokens(char **tokens, dir_node *dir_list)
 {
-	char *full_path = NULL; /*variable to hold full path from dirlist*/
-	/*create variable for child process*/
 	pid_t child;
-	int status = 0;/*status variable for wait*/
-	/*create child process*/
+	int status = 0;
+
 	child = fork();
 	if (child == -1)
 	{
-		/*handle create process error*/
 		perror("Fork failed");
 		return (-1);
 	}
+
 	if (child == 0)
 	{
-		if (_strchr(tokens[0], '/') != NULL)
-		{
-			execve(tokens[0], tokens, environ);
-			perror("execve failed");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			full_path = find_cmd_in_path(tokens[0], dir_list);
-			if (full_path != NULL)
-			{
-				/*call execve command with environ variable &fullpath*/
-				execve(full_path, tokens, environ);
-				/*code below will only run when execve failed*/
-				perror("execve failed");
-				free(full_path);/*free full path frm find_cmd*/
-				return (-1);/*error code*/
-			}
-			else
-			{
-				free(full_path);
-				_fprintf("./hsh: 1: %s: not found\n", tokens[0]);
-				/*return (-10);*/
-				exit(127);
-			}
-		}
+		execute_child_process(tokens, dir_list);
 	}
 	else
 	{
-		wait(&status);/*back to parent process*/
+		wait(&status);
 		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 		{
-			/*printf("Child process exited with error: %d\n",*/
-			/*WEXITSTATUS(status));*/
 			exit_status = WEXITSTATUS(status);
-			/*return exit_status;*/
 		}
 	}
-	/*fprintf(stderr, "hit return 0");*/
-	return (0);/*success*/
+
+	return (0);
 }

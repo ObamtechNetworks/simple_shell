@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * execute_func - finds the format func
+ * execute_func2 - finds the format func
  * @s: the format string
  * @arg: argument pointer
  *
@@ -18,7 +18,7 @@ int execute_func2(char *s, va_list arg)
 }
 
 /**
- * produce_range - outputs characters within a specified address range
+ * produce_range2 - outputs characters within a specified address range
  * @start: start address
  * @stop: stop address
  *
@@ -35,7 +35,7 @@ int produce_range2(char *start, char *stop)
 }
 
 /**
-  * _printf - function that generatess output in accordance to a given format
+  * _fprintf - function that generatess output in accordance to a given format
   * @format: format (char, string, int, decimal)
   * Return: size the output text;
   */
