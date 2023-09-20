@@ -1,0 +1,58 @@
+#include "main.h"
+/**
+ * _setenv - addes an environment variable to the env list
+ * @name: the name of the variable
+ * @value: the value of the variable
+ * Return: 0 on success -1 for error
+ */
+int _setenv(const char *name, const char *value, int overwrite)
+{
+	/*get a variable to store the glob env. variable*/
+	char **env = environ;
+	/*var to make copies of name and *value*/
+	char *name_ptr, *val_ptr;
+	/*edge cases, NULL, length 0 or contains =*/
+	if (name == NULL || (_strlen(name) == 0) || (_strchr(name, '=') != NULL))
+	{
+		return (-1);
+	}
+	name_ptr = _strdup(name);
+	val_ptr = _strdup(value);
+	if (name_ptr == NULL || val_ptr)
+	{
+		return (-1);
+	}
+	/*loop through glob. env to search/comp. if variable exists*/
+	while (*env != NULL)
+	{
+		if (_strncmp(name_ptr, *env, (_strlen(name_ptr) - _strlen(*env))) == 0)
+		{
+			/*if variable exist, overwrite is set to 0*/
+			overwrite = 1;
+			break;
+		}
+		else
+		{/*if variable doesn't exist, overwrite is set to 1*/
+			overwrite = 0;
+			break;
+		}
+	}
+	/*add env and values based on state of overwrite*/
+	if (!overwrite)
+	{
+		while (*env)
+		{
+			/*if env is NULL, add 1 byte and add variable*/
+			if (*env == NULL)
+				*env += 1;
+			/*concatenate = and value to name_ptr*/
+			_strcat(name_ptr, "=");
+			_strcat(name_ptr, val_ptr);
+			/*set or add new variable*/
+			*env = name_ptr;
+		}
+		return (0);/*that all was successful*/
+	}
+	/*if all failed,return -1*/
+	return (-1);
+}
