@@ -1,6 +1,6 @@
 #include "main.h"
 
-int exit_status = 0;
+/*int exit_status = 0;*/
 
 /**
  * getInput - gets input from user

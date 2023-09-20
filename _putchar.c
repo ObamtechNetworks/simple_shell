@@ -21,17 +21,17 @@ int _putchar(int c)
 
 	if (c == BUF_CLEARING || i >= BUF_CAPACITY)
 	{
-		write(1, buf, i);
+		write(2, buf, i);
 		i = 0;
 	}
 
 	if (c != BUF_CLEARING)
 		buf[i++] = c;
 
-	if (c != '\0')
+	/*if (c != '\0')
 	{
 		write(1, &c, 1);
-	}
+	}*/
 
 	return (1);
 }

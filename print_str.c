@@ -9,9 +9,9 @@
 int print_spec_s_match(va_list arg)
 {
 	/* declare variables */
-	unsigned int idx;
-	int r_value;
-	char *strn;
+	unsigned int idx = 0;
+	int r_value = 0;
+	char *strn = NULL;
 
 	/* initialize variable */
 	strn = va_arg(arg, char *);

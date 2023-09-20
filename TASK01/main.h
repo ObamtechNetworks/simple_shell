@@ -59,7 +59,7 @@ char *find_cmd_in_path(char *cmd, dir_node *dir_list);
 
 /** ENVIRON VARIABLE */
 extern char **environ;
-extern int exit_status;
+int exit_status;
 /** GET ENV FUNCTION */
 char *_getenv(const char *name);
 

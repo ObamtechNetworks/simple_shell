@@ -34,7 +34,7 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i;
+	int i = 0;
 
 	for (i = 0; src[i] != '\0'; i++)
 	{
@@ -54,8 +54,8 @@ char *_strcpy(char *dest, char *src)
  */
 char *_strdup(char *str)
 {
-	unsigned int size;
-	char *dup;
+	unsigned int size = 0;
+	char *dup = NULL;
 
 	/*care for when str == NULL */
 	if (str == NULL)
@@ -73,7 +73,6 @@ char *_strdup(char *str)
 	if (dup == NULL)
 	{
 		return (NULL);
-		exit(1);
 	}
 
 	/*copy contents of str into new space */
@@ -113,7 +112,7 @@ int _strlen(char *s)
 
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i;
+	int i = 0;
 
 	for (i = 0; i < n && src[i] != '\0'; i++)
 		dest[i] = src[i];

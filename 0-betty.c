@@ -1,19 +1,11 @@
 #include "main.h"
 /**
- * main - to pass task 0 betty
+ * print_char - prints a char to stdout
+ * @c: the character to print
  * Return: 0(success)
  */
-int main(void)
+int print_char(char c)
 {
-	char *name = "Hello World";
-
-	while (*name)
-	{
-		_putchar(*name);
-		name++;
-	}
-	_putchar('\n');
-
+	write(1, &c, 1);
 	return (0);
 }
-

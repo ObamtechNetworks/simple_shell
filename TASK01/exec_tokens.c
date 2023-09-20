@@ -99,6 +99,7 @@ int exec_tokens(char **tokens, dir_node *dir_list)
 			/*printf("Child process exited with error: %d\n",
 					WEXITSTATUS(status));*/
 			exit_status = WEXITSTATUS(status);
+			printf("exit status: %d", exit_status);
 			
 
 			/*return exit_status;*/
