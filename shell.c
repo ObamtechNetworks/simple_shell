@@ -51,7 +51,7 @@ int main(void)
 	{
 		if (interactive_mode)
 		{
-			printf("$ ");
+			_printf("$ ");
 			fflush(stdout);
 		}
 		/*get user input and store inside buffer*/
