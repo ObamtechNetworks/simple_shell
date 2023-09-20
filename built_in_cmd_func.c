@@ -27,7 +27,7 @@ int handle_exit(char **args)
 		if (endptr == NULL || *endptr != '\0')
 		{
 			perror("invalid exit status");
-			exit (1);/*invalid*/
+			exit(1);/*invalid*/
 		}
 		/*return the exit status based on parsed string*/
 		/*exit status must be between the range*/

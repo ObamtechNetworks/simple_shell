@@ -1,20 +1,30 @@
 #include "main.h"
-
-char *skipDelimiters(char *curr_position, const char *delim)
+/**
+ * skip_delim - skips delimiters
+ * @cur_pos: the current char position
+ * @delim: the delimiter to skip
+ * Return: current position
+ */
+char *skip_delim(char *cur_pos, const char *delim)
 {
 	/*Skip all delimiting characters with the current position*/
-	while (*curr_position != '\0' && (strchr(delim, *curr_position) != NULL))
-		curr_position++;
-	return (curr_position);
+	while (*cur_pos != '\0' && (strchr(delim, *cur_pos) != NULL))
+		cur_pos++;
+	return (cur_pos);
 }
-
-int countWords(char *curr_position, const char *delim)
+/**
+ * word_count - counts words in a given string
+ * @cur_pos: the current char position
+ * @delim: the delimiter to determine a word
+ * Return: number of found words
+ */
+int word_count(char *cur_pos, const char *delim)
 {
 	int found_word = 0;
 
-	for (; *curr_position != '\0'; curr_position++)
+	for (; *cur_pos != '\0'; cur_pos++)
 	{
-		if (strchr(delim, *curr_position) != NULL)
+		if (strchr(delim, *cur_pos) != NULL)
 		{
 			if (found_word)
 				break;
@@ -26,47 +36,54 @@ int countWords(char *curr_position, const char *delim)
 	return (found_word);
 }
 
+/**
+ * _strtok - breaks a string into array of words
+ * @str: the string to break
+ * @delim: the delimiter to determine where to break
+ * Return: the an array of each string or array of chars
+ */
 char *_strtok(char *str, const char *delim)
 {
-	char *store, *temp;
-	static char *curr_position;
-	int i,  total_len, found_word = 0;
+	char *store = NULL;
+	static char *cur_str;
 
 	if (str != NULL)
-		curr_position = str;
-
-	if (curr_position == NULL || *curr_position == '\0')
-		return (NULL);
+		cur_str = str;
+	/*check if current string is NULL OR LENGTH 0*/
+	if (cur_str == NULL || *cur_str == '\0')
+		return (NULL);/*no more tokens availabe*/
 
 	/*skip all delimiting characters with the current position*/
-	curr_position = skipDelimiters(curr_position, delim);
-   
-	/*get the count of words*/
-	found_word = countWords(curr_position, delim);
+	cur_str = skip_delim(cur_str, delim);
 
-	/*Get the total length of the string*/
-	temp = curr_position;
-	for (; *temp != '\0'; temp++)
+	if (*cur_str == '\0')/*if after skipping we got to end of str*/
+		return (NULL);/*END OF STR*/
+
+	store = cur_str;/*start of the current token*/
+	while (*cur_str != '\0' && strchr(delim, *cur_str) == NULL)
+		cur_str++;
+
+	if (*cur_str != '\0')
 	{
-		if (strchr(delim, *temp) != NULL)
-		{
-			if (found_word)
-				break;
-		}
+		*cur_str = '\0';/*add null terminate to the token*/
+		cur_str++;
 	}
-	/*get the total length of the string*/
-	total_len = temp - curr_position;
-
-	/*store the word in the heap*/
-	store = malloc(sizeof(char) * total_len + 1);
-	if (store == NULL)
-		return (NULL);
-
-	for (i = 0; i < total_len; i++)
-		store[i] = curr_position[i];
-	store[i] = '\0';
-
-	curr_position += total_len;
 
 	return (store);
+}
+
+int main(void)
+{
+	char str[] = "PLEASE BREAK ME";
+	char *store = NULL;
+
+	store = _strtok(str, " ");
+	while (store != NULL)
+	{
+		printf ("%s\n", store);
+		store = _strtok(NULL, " ");
+	}
+
+	return (0);
+
 }
