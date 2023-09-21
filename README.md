@@ -13,6 +13,8 @@ This project is an educational project of course as it challenges us about every
 - Basics of thinking like an engineer
 - Group work
 - and Learning how to learn
+- this partner deserves some acolades
+
 
 # RESOURCES GIVEN BY ALX
 - [Unix shell](https://en.wikipedia.org/wiki/Unix_shell)
@@ -25,7 +27,7 @@ This project is an educational project of course as it challenges us about every
 
 # FOCUSED LEARNING OBJECTIVES (BY ALX)
 ## General
-- Who designed and implemented the original Unix operating system
+- Who designed and implemented the original Unix operating system ?
 - Who wrote the first version of the UNIX shell
 - Who invented the B programming language (the direct predecessor to the C programming language)
 - Who is Ken Thompson
