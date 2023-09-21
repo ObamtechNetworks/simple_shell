@@ -50,7 +50,15 @@ int handle_exit(char **args)
  */
 int handle_env(char **args)
 {
-	(void)args;
-	/*set the */
+	/*local variable*/
+	char **env = environ;
+
+	/*check if there are no arguments*/
+	if (args != NULL)
+	{
+		for (; *env != NULL; env++)
+			_printf("%s\n", *env);
+	}
+	/*else, loop through variable environ to print each value out*/
 	return (0);
 }
