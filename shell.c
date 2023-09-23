@@ -10,7 +10,11 @@ ssize_t getInput(char **lines_buffer, size_t *line_len)
 	ssize_t line_size;
 
 	line_size = getline(lines_buffer, line_len, stdin);
-	if (line_size == -1)
+	if ((*lines_buffer)[0] == '#')
+	{
+		return -3;
+	}
+	else if (line_size == -1)
 		return (-1);
 	else if (line_size == 1 && (*lines_buffer)[0] == '\n')
 	{
@@ -31,10 +35,9 @@ int main(void)
 	size_t line_len = 0;
 	char **tokens = NULL;
 	int argc = 0;
-	int i = 0, built_in = 0;
+	int i = 0, built_in = 0, run = 1;
 	ssize_t rtn_val_input = 0;
 	dir_node *dir_list = build_dir_list();/*call the build dir list fxn*/
-	int run = 1;
 	int interactive_mode = isatty(STDIN_FILENO);
 
 	while (run)
@@ -45,6 +48,8 @@ int main(void)
 			fflush(stdout);
 		}
 		rtn_val_input = getInput(&lines_buffer, &line_len);
+		if(rtn_val_input == -3)
+			continue;
 		if (rtn_val_input == -1)
 		{
 			run = 0;
