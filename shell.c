@@ -12,7 +12,7 @@ ssize_t getInput(char **lines_buffer, size_t *line_len)
 	line_size = getline(lines_buffer, line_len, stdin);
 	if ((*lines_buffer)[0] == '#')
 	{
-		return -3;
+		return (-3);
 	}
 	else if (line_size == -1)
 		return (-1);
@@ -48,7 +48,7 @@ int main(void)
 			fflush(stdout);
 		}
 		rtn_val_input = getInput(&lines_buffer, &line_len);
-		if(rtn_val_input == -3)
+		if (rtn_val_input == -3)
 			continue;
 		if (rtn_val_input == -1)
 		{
